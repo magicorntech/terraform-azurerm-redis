@@ -12,7 +12,7 @@ module "redis-master" {
   rg_name     = azurerm_resource_group.main.name
   rg_location = azurerm_resource_group.main.location
   prv_dns_id  = "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/magicorn-main-rg-bastion/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net"
-  subnet_id   = module.network.pvt_subnet_ids[0] # use only if sku_name Premium and above
+  subnet_id   = module.network.pvt_subnet_ids[0]
 
   # Redis Configuration
   server_name          = "master"
