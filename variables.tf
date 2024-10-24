@@ -1,0 +1,17 @@
+variable "tenant" {}
+variable "name" {}
+variable "server_name" {}
+variable "environment" {}
+variable "rg_name" {}
+variable "rg_location" {}
+variable "prv_dns_id" {}
+variable "subnet_id" {}
+variable "redis_version" {}
+variable "sku_name" {}
+variable "capacity" {}
+variable "family" {}
+variable "non_ssl_port_enabled" {}
+variable "day_of_week" {}
+variable "start_hour_utc" {}
+variable "maintenance_window" {}
+variable "high_availability" {}
