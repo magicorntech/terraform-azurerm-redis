@@ -5,14 +5,14 @@ Magicorn made Terraform Module for Azure Provider
 ```
 module "redis-master" {
   source      = "magicorntech/redis/azurerm"
-  version     = "0.0.1"
+  version     = "0.0.2"
   tenant      = var.tenant
   name        = var.name
   environment = var.environment
   rg_name     = azurerm_resource_group.main.name
   rg_location = azurerm_resource_group.main.location
   prv_dns_id  = "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/magicorn-main-rg-bastion/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net"
-  subnet_id   = module.network.pvt_subnet_ids[0]
+  subnet_id   = module.network.pvt_subnet_ids[0] # use only if sku_name Premium and above
 
   # Redis Configuration
   server_name          = "master"
@@ -24,7 +24,6 @@ module "redis-master" {
   day_of_week          = "Sunday"
   start_hour_utc       = "0"
   maintenance_window   = "PT5H"
-  high_availability    = false
 }
 
 ```

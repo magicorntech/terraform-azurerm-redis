@@ -9,7 +9,8 @@ resource "azurerm_redis_cache" "main" {
   non_ssl_port_enabled          = var.non_ssl_port_enabled
   minimum_tls_version           = "1.2"
   public_network_access_enabled = false
-  #zones                         = [1]
+  subnet_id                     = (var.sku_name == "Basic" || var.sku_name == "Standard") ? null : var.subnet_id
+  zones                         = (var.sku_name == "Basic" || var.sku_name == "Standard") ? null : [1, 2]
 
   patch_schedule {
     day_of_week        = var.day_of_week
@@ -20,21 +21,6 @@ resource "azurerm_redis_cache" "main" {
   redis_configuration {
     aof_backup_enabled = false
   }
-
-  # dynamic "high_availability" {
-  #   for_each = (var.high_availability == true) ? [true] : []
-  #   content {
-  #     mode                      = "ZoneRedundant"
-  #     standby_availability_zone = 2
-  #   }
-  # }
-
-  # lifecycle {
-  #   ignore_changes = [
-  #     zone,
-  #     high_availability[0].standby_availability_zone
-  #   ]
-  # }
 
   tags = {
     Name        = "${var.tenant}-${var.name}-redis-${var.server_name}-${var.environment}"

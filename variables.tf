@@ -14,4 +14,3 @@ variable "non_ssl_port_enabled" {}
 variable "day_of_week" {}
 variable "start_hour_utc" {}
 variable "maintenance_window" {}
-variable "high_availability" {}

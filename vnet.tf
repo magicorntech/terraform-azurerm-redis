@@ -1,4 +1,5 @@
 resource "azurerm_private_endpoint" "main" {
+  count               = (var.sku_name == "Basic" || var.sku_name == "Standard") ? 1 : 0
   name                = "${var.tenant}-${var.name}-redis-${var.server_name}-pe-${var.environment}"
   resource_group_name = var.rg_name
   location            = var.rg_location
